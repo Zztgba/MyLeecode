@@ -33,6 +33,11 @@ public class MyThreadPool {
     //5任务队列长度
     private int queueSize;
 
+    public MyThreadPool(int corePoolSize, int maxSize, int queueSize) {
+        this.corePoolSize = corePoolSize;
+        this.maxSize = maxSize;
+        this.queueSize = queueSize;
+    }
 
     //提交任务
     public void sumbit(Runnable r){
@@ -50,7 +55,13 @@ public class MyThreadPool {
     private void execute(Runnable r){
         //判断线程量，是否超出核心线程数
         if (num < corePoolSize){
-
+            new MyWork("核心线程："+ num,tasks).start();
+            num++;
+        }else if (num < maxSize){
+            new MyWork("非核心线程："+num,tasks).start();
+            num++;
+        }else {
+            System.out.println("任务："+r+"被缓存了。。。");
         }
     }
 

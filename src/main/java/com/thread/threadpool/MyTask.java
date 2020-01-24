@@ -27,4 +27,11 @@ public class MyTask  implements Runnable{
 
         System.out.println("线程："+Thread.currentThread().getName()+"完成了任务");
     }
+
+    @Override
+    public String toString() {
+        return "MyTask{" +
+                "id=" + id +
+                '}';
+    }
 }
